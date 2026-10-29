@@ -1,15 +1,1 @@
-config adom/template/router_bgp/bgp-spoke-universal
-config router route-map
-  edit "SPOKE_LAN_OUT"
-  config rule
-    edit 1
-      set match-tag 100
-      set set-priority 1
-    next
-    end
-  next
-end
 
-config router bgp
-end
-end
