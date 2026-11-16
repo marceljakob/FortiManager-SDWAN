@@ -1,0 +1,67 @@
+config adom/wanprof/sdwan-spoke-1isp
+
+config system sdwan
+    set status enable
+    config zone
+        edit "virtual-wan-link"
+        next
+        edit "underlay"
+        next
+        edit "overlay"
+        next
+    end
+    
+    config members
+        edit 1
+            set interface $(str_spoke_port_wan)
+            set zone "underlay"
+        next
+        edit 3
+            set interface "H1_ISP1"
+            set zone "overlay"
+            set priority 10
+        next
+    end
+    
+    config health-check
+        edit "HUB"
+            set server $(ip_hub1_hc_lo)
+            set embed-measured-health enable
+            set members 3
+            config sla
+                edit 1
+                    set link-cost-factor latency jitter packet-loss
+                    set latency-threshold 100
+                    set jitter-threshold 50
+                    set packetloss-threshold 5
+                next
+            end
+        next
+    end
+    
+    config service
+        edit 1
+            set name "CORPORATE"
+            set mode sla
+            set dst "all"
+            set src "all"
+            config sla
+                edit "HUB"
+                    set id 1
+                next
+            end
+            set priority-members 3
+            set tie-break fib-best-match
+        next
+    end
+    
+    config neighbor
+        edit $(ip_hub_bgp_lo)
+            set member 3
+            set route-metric priority
+            set health-check "HUB"
+        next
+    end
+end
+
+end
