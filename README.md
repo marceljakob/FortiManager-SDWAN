@@ -1,6 +1,7 @@
 # FortiManager-SDWAN
 
 ## Description
+Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WAN provisioning templates in an ADOM or policy package – built for lab, demo and POC environments. Not affiliated with or supported by Fortinet.
 
 ## Script
 
