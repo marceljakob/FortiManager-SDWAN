@@ -3,9 +3,7 @@
 ## Description
 Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WAN provisioning templates in an ADOM or policy package – built for lab, demo and POC environments. Not affiliated with or supported by Fortinet.
 
-## Script
-
-### Variables
+## Variables
 | Variable  | Description | Example Value |
 | ------------- | ------------- | ------------- |
 | ip_spoke_bgp_lo | "Lo-BGP" IP-adress of Spoke | 10.200.1.15 |
@@ -14,13 +12,17 @@ Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WA
 | net_bgp_lo | Summary LAN of "Lo-BGP" | 10.200.1.0/24 |
 | str_asn_emea | ASN of Region EMEA | 65002 |
 
-### Preparation
+
+## Scripts
+
+
+### Preparation Scripts
 | Script Name  | Content | Type | Target |
 | ------------- | ------------- | ------------- | ------------- |
 | O metavariables.jinja | |  Jinja | ADOM Database |
 
 
-### Spokes
+### Spokes Scripts
 | Script Name  | Content | Type | Target |
 | ------------- | ------------- | ------------- | ------------- |
 | D bgp-spoke-universal.jinja  | BGP Template for Spokes | Jinja | ADOM Database |
@@ -32,8 +34,7 @@ Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WA
 | D system-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
 
 
-### Hubs
-### Spokes
+### Hubs Scripts
 | Script Name  | Content | Type | Target |
 | ------------- | ------------- | ------------- | ------------- |
 | O bgp-hub-universal.jinja  | BGP Template for Spokes | Jinja | ADOM Database |
