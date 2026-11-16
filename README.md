@@ -28,12 +28,12 @@ Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WA
 | Script Name  | Content | Type | Target |
 | ------------- | ------------- | ------------- | ------------- |
 | D bgp-spoke-universal.jinja  | BGP Template for Spokes | Jinja | ADOM Database |
-| O ipsec-spoke-1isp  | IPsec Template for Spokes with 1 ISP  | Jinja | ADOM Database |
-| O ipsec-spoke-2isp  | IPsec Template for Spokes with 2 ISP  | Jinja | ADOM Database |
-| O sdwan-spoke-1isp  | SDWAN Template for Spokes with 1 ISP  | Jinja | ADOM Database |
-| O sdwan-spoke-2isp  | SDWAN Template for Spokes with 2 ISP  | Jinja | ADOM Database |
-| D static-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
-| D system-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
+| D ipsec-spoke-1isp.jinja  | IPsec Template for Spokes with 1 ISP  | Jinja | ADOM Database |
+| O ipsec-spoke-2isp.jinja  | IPsec Template for Spokes with 2 ISP  | Jinja | ADOM Database |
+| O sdwan-spoke-1isp.jinja  | SDWAN Template for Spokes with 1 ISP  | Jinja | ADOM Database |
+| O sdwan-spoke-2isp.jinja  | SDWAN Template for Spokes with 2 ISP  | Jinja | ADOM Database |
+| D static-spoke-universal.jinja  | Static Routes for Spokes  | Jinja | ADOM Database |
+| D system-spoke-universal.jinja  | Static Routes for Spokes  | Jinja | ADOM Database |
 
 
 ### Hubs Scripts
