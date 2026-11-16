@@ -13,17 +13,32 @@
 | net_bgp_lo | Summary LAN of "Lo-BGP" | 10.200.1.0/24 |
 | str_asn_emea | ASN of Region EMEA | 65002 |
 
+### Preparation
+| Script Name  | Content | Type | Target |
+| ------------- | ------------- | ------------- | ------------- |
+| O metavariables.jinja | |  Jinja | ADOM Database |
+
+
 ### Spokes
 | Script Name  | Content | Type | Target |
 | ------------- | ------------- | ------------- | ------------- |
-| metavariables.jinja | |  Jinja | ADOM Database |
-| bgp-spoke-universal.jinja  | BGP Template for Spokes | Jinja | ADOM Database |
-| ipsec-spoke-1isp  | IPsec Template for Spokes with 1 ISP  | Jinja | ADOM Database |
-| ipsec-spoke-2isp  | IPsec Template for Spokes with 2 ISP  | Jinja | ADOM Database |
-| sdwan-spoke-1isp  | SDWAN Template for Spokes with 1 ISP  | Jinja | ADOM Database |
-| sdwan-spoke-2isp  | SDWAN Template for Spokes with 2 ISP  | Jinja | ADOM Database |
-| static-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
-| system-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
+| D bgp-spoke-universal.jinja  | BGP Template for Spokes | Jinja | ADOM Database |
+| O ipsec-spoke-1isp  | IPsec Template for Spokes with 1 ISP  | Jinja | ADOM Database |
+| O ipsec-spoke-2isp  | IPsec Template for Spokes with 2 ISP  | Jinja | ADOM Database |
+| O sdwan-spoke-1isp  | SDWAN Template for Spokes with 1 ISP  | Jinja | ADOM Database |
+| O sdwan-spoke-2isp  | SDWAN Template for Spokes with 2 ISP  | Jinja | ADOM Database |
+| D static-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
+| D system-spoke-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
 
 
 ### Hubs
+### Spokes
+| Script Name  | Content | Type | Target |
+| ------------- | ------------- | ------------- | ------------- |
+| O bgp-hub-universal.jinja  | BGP Template for Spokes | Jinja | ADOM Database |
+| O ipsec-hub-1isp  | IPsec Template for Spokes with 1 ISP  | Jinja | ADOM Database |
+| O ipsec-hub-2isp  | IPsec Template for Spokes with 2 ISP  | Jinja | ADOM Database |
+| O sdwan-hub-1isp  | SDWAN Template for Spokes with 1 ISP  | Jinja | ADOM Database |
+| O sdwan-hub-2isp  | SDWAN Template for Spokes with 2 ISP  | Jinja | ADOM Database |
+| O static-hub-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
+| O system-hub-universal  | Static Routes for Spokes  | Jinja | ADOM Database |
