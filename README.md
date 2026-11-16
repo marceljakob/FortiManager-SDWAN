@@ -10,8 +10,10 @@ Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WA
 | ip_hub1_bgp_lo | "Lo-BGP" IP-address of Hub1 | 10.200.1.250 |
 | net_spoke_lan | LAN with Subnet| 192.168.100.0/24 |
 | net_bgp_lo | Summary LAN of "Lo-BGP" | 10.200.1.0/24 |
+| pip1_hub1 | Public IP from Hub 1 - ISP 1 | 8.8.8.8 |
+| sec_psk_ipsec | PSK Secret for IPSec | mySecretPSK11? |
 | str_asn_emea | ASN of Region EMEA | 65002 |
-
+| str_spoke_port_wan | Name of WAN Port | wan1 |
 
 ## Scripts
 
