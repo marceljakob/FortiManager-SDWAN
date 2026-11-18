@@ -3,6 +3,14 @@
 ## Description
 Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WAN provisioning templates in an ADOM or policy package – built for lab, demo and POC environments. Not affiliated with or supported by Fortinet.
 
+## Snipplets
+| Script Name  | Content | Type | Target |
+| ------------- | ------------- | ------------- | ------------- |
+| metavariables.jinja | Meta Variables | Jinja | ADOM Database |
+| ipsec-template.jinja  | IPsec Template | Jinja | ADOM Database |
+
+# Example Projects
+
 ## Variables
 | Variable  | Description | Example Value |
 | ------------- | ------------- | ------------- |
