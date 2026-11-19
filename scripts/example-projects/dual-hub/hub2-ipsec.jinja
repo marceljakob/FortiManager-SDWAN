@@ -4,7 +4,7 @@ config vpn ipsec phase1-interface
   edit "EDGE_ISP1"
     set type dynamic
     set keylife 28800
-    set interface $(str_hub12_port_wan1)
+    set interface $(str_hub2_port_wan1)
     set ike-version 2
     set transport udp
     set psksecret $(sec_psk_ipsec)
