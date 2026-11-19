@@ -1,0 +1,79 @@
+config adom/template/router_bgp/hub2-bgp
+
+config router route-map
+  edit "LOCAL_REGION"
+    config rule
+      edit 1
+        set set-community "no-export"
+        set set-tag 100
+      next
+    end
+  next
+  edit "LAN_TAG"
+    config rule
+      edit 1
+        set set-tag 100
+      next
+    end
+  next 
+  edit "EDGE_OUT"
+    config rule
+      edit 100
+      next
+    end
+  next 
+end
+
+config router bgp
+  set as $(str_asn_emea)
+  set router-id $(ip_hub2_bgp_lo)
+  set keepalive-timer 15
+  set holdtime-timer 45
+  set ibgp-multipath enable
+  set ebgp-multipath enable
+  set recursive-next-hop enable
+  set recursive-inherit-priority enable
+  set graceful-restart enable
+  
+    config neighbor-group
+        edit "EDGE"
+            set ebgp-enforce-multihop enable
+            set advertisement-interval 1
+            set capability-graceful-restart enable
+            set next-hop-self enable
+            set soft-reconfiguration enable
+            set interface "Lo-BGP"
+            set passive disable
+            set remote-as $(str_asn_emea)
+            set route-map-out "EDGE_OUT"
+            set update-source "Lo-BGP"
+            set route-reflector-client disable
+          next
+    end
+    config neighbor-range
+        edit 101
+            set prefix $(net_summary_bgp)
+            set neighbor-group "EDGE"
+        next
+    end
+    config aggregate-address
+    edit 111
+      set prefix $(net_summary_lan)
+    next
+    end
+    config network
+        edit 101
+            set prefix $(ip_hub_hc_lo)/32
+        next
+        edit 102
+            set prefix $(net_summary_bgp)
+            set route-map "LOCAL_REGION"
+        next
+        edit 111
+            set prefix $(net_hub2_lan)
+            set route-map "LAN_TAG"
+        next
+    end
+end
+
+end
