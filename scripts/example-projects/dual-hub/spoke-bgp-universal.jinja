@@ -81,7 +81,7 @@ config router bgp
     end
     config neighbor-range
         edit 1
-            set prefix $(net_bgp_lo)
+            set prefix $(net_summary_bgp)
             set neighbor-group "DYN_EDGE"
         next
     end
