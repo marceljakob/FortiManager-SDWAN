@@ -14,6 +14,10 @@ config cli template
         set ip $(ip_hub_hc_lo) 255.255.255.255
         set allowaccess ping
     next
+end
+ config system settings
+  set location-id $(ip_hub1_bgp_lo)
+  set allow-subnet-overlap enable
 end"
     next
 end
