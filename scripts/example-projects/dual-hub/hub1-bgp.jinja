@@ -62,13 +62,16 @@ config router bgp
     next
     end
     config network
+        edit 101
+            set prefix $(ip_hub_hc_lo)/32
+        next
         edit 102
-            set prefix $(net_spoke_lan)
+            set prefix $(net_summary_bgp)
             set route-map "LOCAL_REGION"
         next
         edit 111
             set prefix $(net_hub1_lan)
-            set route-map "LOCAL_REGION"
+            set route-map "LAN_TAG"
         next
     end
 end
