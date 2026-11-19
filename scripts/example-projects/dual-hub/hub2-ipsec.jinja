@@ -1,0 +1,69 @@
+config adom/template/_ipsec/hub1-ipsec
+    
+config vpn ipsec phase1-interface
+  edit "EDGE_ISP1"
+    set type dynamic
+    set keylife 28800
+    set interface $(str_hub12_port_wan1)
+    set ike-version 2
+    set transport udp
+    set psksecret $(sec_psk_ipsec)
+    set peertype any
+    set localid H2-ISP1
+    set exchange-fgt-device-id enable
+    set dhgrp 20 21
+    set proposal aes256gcm-prfsha256
+    set auto-discovery-sender enable
+    set add-route disable
+    set encapsulation none
+    set exchange-ip-addr4 $(ip_hub2_bgp_lo)
+    set dpd-retrycount 2
+    set dpd-retryinterval 5
+    set dpd on-idle
+    unset local-gw
+  next
+end
+config vpn ipsec phase2-interface
+  edit "EDGE_ISP1"
+    set phase1name "EDGE_ISP1"
+    set dhgrp 20 21
+    set proposal aes256gcm
+    set keepalive enable
+    set keylife 3600
+  next
+end
+
+config vpn ipsec phase1-interface
+  edit "EDGE_ISP2"
+    set type dynamic
+    set interface $(str_hub2_port_wan2)
+    set keylife 28800
+    set ike-version 2
+    set transport udp
+    set psksecret $(sec_psk_ipsec)
+    set peertype any
+    set localid H2-ISP2
+    set exchange-fgt-device-id enable
+    set dhgrp 20 21
+    set proposal aes256gcm-prfsha256
+    set auto-discovery-sender enable
+    set add-route disable
+    set encapsulation none
+    set exchange-ip-addr4 $(ip_hub2_bgp_lo)
+    set dpd-retrycount 2
+    set dpd-retryinterval 5
+    set dpd on-idle
+    unset local-gw
+  next
+end
+config vpn ipsec phase2-interface
+  edit "EDGE_ISP2"
+    set phase1name "EDGE_ISP2"
+    set dhgrp 20 21
+    set proposal aes256gcm
+    set keepalive enable
+    set keylife 3600
+  next
+end
+
+end
