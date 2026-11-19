@@ -1,1 +1,95 @@
+config adom/template/router_bgp/bgp-spoke-universal
 
+config router route-map
+    edit "H1_TAG"
+      config rule
+        edit 1
+          set set-tag 1
+        next
+      end
+    next
+    edit "H2_TAG"
+      config rule
+        edit 1
+          set set-tag 2
+        next
+      end
+    next
+    edit "LAN_OUT"
+        config rule
+            edit 1
+                set match-tag 100
+                unset set-ip-prefsrc
+                set set-priority 1
+            next
+        end
+    next
+    edit "LAN_TAG"
+        config rule
+            edit 1
+                unset set-ip-prefsrc
+                set set-tag 100
+                set set-priority 1
+            next
+        end
+    next
+end
+
+config router bgp
+    set as $(str_asn_emea)
+    set router-id $(ip_spoke_bgp_lo)
+    set graceful-restart enable
+    set ibgp-multipath enable
+    set recursive-next-hop enable
+    set tag-resolve-mode disable
+    set keepalive-timer 15
+    set holdtime-timer 45
+    config neighbor
+        edit $(ip_hub1_bgp_lo)
+            set advertisement-interval 1
+            set capability-graceful-restart enable
+            set soft-reconfiguration enable
+            set interface "Lo-BGP"
+            set remote-as $(str_asn_emea)
+            set connect-timer 1
+            set update-source "Lo-BGP"
+        next
+        edit $(ip_hub2_bgp_lo)
+            set advertisement-interval 1
+            set capability-graceful-restart enable
+            set soft-reconfiguration enable
+            set interface "Lo-BGP"
+            set remote-as $(str_asn_emea)
+            set connect-timer 1
+            set update-source "Lo-BGP"
+        next
+    end
+    config neighbor-group
+        edit "DYN_EDGE"
+            set ebgp-enforce-multihop enable
+            set capability-graceful-restart enable
+            set advertisement-interval 1
+            set capability-graceful-restart enable
+            set next-hop-self enable
+            set soft-reconfiguration enable
+            set interface "Lo-BGP"
+            set passive disable
+            set remote-as $(str_asn_emea)
+            set route-map-out "LAN_OUT"
+            set update-source "Lo-BGP"
+        next
+    end
+    config neighbor-range
+        edit 1
+            set prefix $(net_bgp_lo)
+            set neighbor-group "DYN_EDGE"
+        next
+    end
+    config network
+        edit 100
+            set prefix $(net_spoke_lan)
+            set route-map "LAN_TAG"
+        next
+    end
+end
+end
