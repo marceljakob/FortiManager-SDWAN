@@ -3,11 +3,6 @@ config adom/devprof/hub2-system
   config system global
     set admintimeout 30
   end
-  
- config system settings
-  set location-id $(ip_hub2_bgp_lo)
-  set allow-subnet-overlap enable
-end
 
 config system template interface
   edit 1
