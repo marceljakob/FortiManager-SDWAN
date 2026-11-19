@@ -2,25 +2,68 @@ config fmg variable
   edit "hostname"
     set value "default-fgt"
   next
-  edit "ip_hub_bgp_lo"
+  edit "ip_spoke_bgp_lo"
+    set value ""
+  next
+  edit "ip_hub1_bgp_lo"
     set value "10.200.1.250"
   next
-  edit "ip_spoke_bgp_lo"
-    set value "10.200.1.5"
+  edit "ip_hub2_bgp_lo"
+    set value "10.200.1.251"
   next
-  edit "str_asn_emea"
-    set value "65001"
+  edit "ip_hub_hc_lo"
+    set value "10.200.99.1"
   next
-  edit "str_spoke_port_wan"
-    set value "wan1"
+  edit "net_hub1_lan"
+    set value "192.168.10.0/24"
+  next
+  edit "net_hub2_lan"
+    set value "192.168.20.0/24"
   next
   edit "net_spoke_lan"
-    set value "192.168.5.0 255.255.255.0"
+    set value ""
+  next
+  edit "net_summary_lan"
+    set value "192.168.0.0/16"
+  next
+  edit "net_summary_bgp"
+    set value "10.200.1.0/24"
   next
   edit "pip1_hub1"
-    set value "37.24.219.21"
+    set value ""
+  next
+  edit "pip2_hub1"
+    set value ""
+  next
+  edit "pip1_hub2"
+    set value ""
+  next
+  edit "pip2_hub2"
+    set value ""
   next
   edit "sec_psk_ipsec"
     set value ""
   next
+  edit "str_asn_emea"
+    set value "65001"
+  next
+  edit "str_hub1_port_wan1"
+    set value "port1"
+  next
+  edit "str_hub1_port_wan2"
+    set value "port2"
+  next
+  edit "str_hub2_port_wan1"
+    set value "port1"
+  next
+  edit "str_hub2_port_wan2"
+    set value "port2"
+  next
+  edit "str_spoke_port_wan1"
+    set value "port1"
+  next
+  edit "str_spoke_port_wan2"
+    set value "port2"
+  next
+
 end
