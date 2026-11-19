@@ -1,0 +1,27 @@
+config adom/devprof/hub2-system
+
+  config system global
+    set admintimeout 30
+  end
+  
+ config system settings
+  set location-id $(ip_hub2_bgp_lo)
+  set allow-subnet-overlap enable
+end
+
+config system template interface
+  edit 1
+        set name "Lo-BGP"
+        set action add-loopback
+        set model "all"
+        set vdom "root"
+  next
+  edit 2
+        set name "Lo-HC"
+        set action add-loopback
+        set model "all"
+        set vdom "root"
+  next
+  end
+    
+end
