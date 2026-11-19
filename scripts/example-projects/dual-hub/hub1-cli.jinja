@@ -1,0 +1,19 @@
+config cli template
+    edit "hub1-cli"
+        set type cli
+        set script "config system interface
+    edit Lo-BGP
+        set vdom root
+        set type loopback
+        set ip $(ip_hub1_bgp_lo) 255.255.255.255
+        set allowaccess ping
+    next
+    edit Lo-HC
+        set vdom root
+        set type loopback
+        set ip $(ip_hub_hc_lo) 255.255.255.255
+        set allowaccess ping
+    next
+end"
+    next
+end
