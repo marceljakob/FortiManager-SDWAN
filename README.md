@@ -18,6 +18,8 @@ Unofficial Jinja scripts for FortiManager Device Manager to quickly create SD-WA
 | ip_hub1_bgp_lo | "Lo-BGP" IP-address of Hub1 | 10.200.1.250 |
 | ip_hub2_bgp_lo | "Lo-BGP" IP-address of Hub1 | 10.200.1.251 |
 | ip_hub_hc_lo | "Lo-HC" IP-address of Hub1 | 10.200.99.1 |
+| net_hub1_lan | LAN HUB1 with Subnet| 192.168.100.0/24 |
+| net_hub2_lan | LAN HUB2 with Subnet| 192.168.100.0/24 |
 | net_spoke_lan | LAN with Subnet| 192.168.100.0/24 |
 | net_summary_lan | LAN with Subnet| 192.168.0.0/16 |
 | net_summary_bgp | Summary LAN of "Lo-BGP" | 10.200.1.0/24 |
