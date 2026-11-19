@@ -1,0 +1,15 @@
+config cli template
+    edit "spoke-cli-universal"
+        set type cli
+        set script "
+          config system interface
+            edit "Lo-BGP"
+            set vdom "root"
+            set ip $(ip_bgploopback) 255.255.255.255
+            set allowaccess ping
+            set type loopback
+          next
+        end
+        "
+    next
+end
