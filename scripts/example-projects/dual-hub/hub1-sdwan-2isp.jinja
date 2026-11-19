@@ -1,0 +1,51 @@
+config adom/wanprof/hub1-sdwan-2isp
+
+config system sdwan
+  set status enable
+  config zone
+    edit "underlay"
+    next
+    edit "overlay"
+    next
+  end
+  config members
+    edit 1
+      set interface $(str_hub1_port_wan1)
+      set priority 10
+      set zone "underlay"
+    next
+    edit 2
+      set interface $(str_hub1_port_wan2)
+      set priority 10
+      set zone "underlay"
+    next
+    edit 3
+      set interface "EDGE_ISP1"
+      set priority 10
+      set zone "overlay"
+    next
+    edit 4
+      set interface "EDGE_ISP2"
+      set priority 10
+      set zone "overlay"
+    next
+
+  end
+  config health-check
+    edit "EDGE"
+      set detect-mode remote
+      set members 3 4
+      set sla-id-redistribute 1
+      config sla
+        edit 1
+          set link-cost-factor remote
+          set priority-in-sla 5
+          set priority-out-sla 995
+        next
+      end
+    next
+  end
+end
+
+end
+
