@@ -1,0 +1,10 @@
+config adom/template/_router_static/spoke-static-universal
+
+config router static
+    edit 10
+        set distance 1
+        set sdwan-zone "underlay" "overlay"
+    next
+end
+
+end
