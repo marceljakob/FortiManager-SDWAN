@@ -1,0 +1,21 @@
+config adom/template/_router_static/hub1-static
+
+config router static
+    edit 100
+        set sdwan-zone "underlay"
+    next
+    edit 102
+        set dst $(net_summary_lan)
+        set blackhole enable
+        set vrf 0
+        set comment "Avoid potential recursive resolution of corporate BGP routes via underlay"
+    next
+    edit 103
+        set dst $(net_summary_bgp)
+        set blackhole enable
+        set vrf 0
+        set comment "Regional loopback summary"
+    next
+end
+
+end
