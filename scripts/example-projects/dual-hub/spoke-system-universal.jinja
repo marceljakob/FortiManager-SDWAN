@@ -4,11 +4,6 @@ config adom/devprof/spoke-system-universal
     set admintimeout 30
   end
   
- config system settings
-  set location-id $(ip_spoke_bgp_lo)
-  set allow-subnet-overlap enable
-end
-
 config system template interface
   edit 1
         set name "Lo-BGP"
