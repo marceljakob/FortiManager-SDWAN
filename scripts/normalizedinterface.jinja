@@ -1,0 +1,14 @@
+config dynamic interface
+    edit "overlay"
+        set description "SD-WAN Overlay-Zone"
+        set single-intf disable
+        set default-mapping enable
+        set defmap-intf "overlay"
+    next
+    edit "underlay"
+    set description "SD-WAN Underlay-Zone (WAN)"
+        set single-intf disable
+        set default-mapping enable
+        set defmap-intf "underlay"
+    next
+end
