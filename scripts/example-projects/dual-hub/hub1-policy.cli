@@ -1,0 +1,71 @@
+config firewall address
+    edit "CORP_LAN"
+        set subnet 192.168.0.0 255.255.0.0
+        set comment "LAN of all Spokes"
+    next
+    edit "LAN_LOCAL"
+        set subnet $(net_hub1_lan)
+        set comment "Local LAN of Hub"
+    next
+end
+
+
+config firewall policy
+     edit 1
+        set name "LAN_to_Internet"
+        set srcintf "port3"
+        set dstintf "underlay"
+        set action accept
+        set srcaddr "LAN_LOCAL"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+        set logtraffic all
+    next     
+edit 10
+    set name "Edge-Edge"
+    set srcintf overlay 
+    set dstintf overlay
+    set srcaddr "CORP_LAN"
+    set dstaddr "CORP_LAN"
+    set action accept
+    set schedule "always"
+    set service "ALL"
+    # Allow overlay switchover for existing sessions (from shortcut to Hub)
+    set anti-replay disable
+    set tcp-session-without-syn all
+  next
+  edit 11
+    set name "Edge-Hub"
+    set srcintf port3 overlay
+    set dstintf port3 overlay
+    set srcaddr "CORP_LAN"
+    set dstaddr "CORP_LAN"
+    set action accept
+    set schedule "always"
+    set service "ALL"
+  next
+edit 12
+    set name "Health-Check"
+    set srcintf "overlay"
+    set dstintf "Lo-HC"
+    set srcaddr "all"
+    set dstaddr "all"
+    set action accept
+    set schedule "always"
+    set service "PING"
+  next
+  edit 13
+    set name "Peering"
+    set srcintf overlay
+    set dstintf "Lo-BGP"
+    set srcaddr "all"
+    set dstaddr "all"
+    set action accept
+    set schedule "always"
+    set service "PING" "BGP"
+  next
+end
+
+end
